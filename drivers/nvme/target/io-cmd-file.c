@@ -117,7 +117,7 @@ static ssize_t nvmet_file_submit_bvec(struct nvmet_req *req, loff_t pos,
 	return ret;
 }
 
-static void nvmet_file_io_done(struct kiocb *iocb, long ret, long ret2)
+static void nvmet_file_io_done(struct kiocb *iocb, long ret)
 {
 	struct nvmet_req *req = container_of(iocb, struct nvmet_req, f.iocb);
 
@@ -193,7 +193,7 @@ static void nvmet_file_execute_rw(struct nvmet_req *req)
 		ret = -EIO;
 out:
 	if (unlikely(is_sync || ret)) {
-		nvmet_file_io_done(&req->f.iocb, ret < 0 ? ret : total_len, 0);
+		nvmet_file_io_done(&req->f.iocb, ret < 0 ? ret : total_len);
 		return;
 	}
 	req->f.iocb.ki_complete = nvmet_file_io_done;
