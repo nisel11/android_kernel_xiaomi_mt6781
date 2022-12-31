@@ -68,4 +68,5 @@ obj-$(CONFIG_MTK_COMBO_CHIP_CONSYS_6781) += wlan/core/gen4m/
 obj-$(CONFIG_MTK_BTIF) += bt/mt66xx/wmt/
 obj-$(CONFIG_MTK_COMBO_GPS) += gps/
 obj-$(CONFIG_MTK_COMBO) += connfem/
+obj-$(CONFIG_MTK_FMRADIO) += fmradio/
 endif
