@@ -193,10 +193,14 @@ int mt_leds_brightness_set(char *name, int level)
 	}
 	led_dat = container_of(leds_info->leds[index],
 		struct mtk_led_data, desp);
+#if defined(CONFIG_BACKLIGHT_SUPPORT_2047_FEATURE)
+		led_Level = level;
+#else
 	led_Level = (
 		(((1 << led_dat->conf.led_bits) - 1) * level
 		+ (((1 << led_dat->conf.trans_bits) - 1) / 2))
 		/ ((1 << led_dat->conf.trans_bits) - 1));
+#endif
 	led_level_disp_set(led_dat, led_Level);
 	led_dat->last_level = led_Level;
 
