@@ -65,7 +65,6 @@ config TCPC_MT6370
 config PD_DBG_INFO
 	bool "TCPC power delivery debug information"
 	depends on TCPC_CLASS
-	default y
 	help
 	  Say Y to enable
 	  power delivery
